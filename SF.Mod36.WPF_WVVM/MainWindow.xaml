@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:SF.Mod36.WPF_WVVM"
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="600">
-    <Grid>
-
-    </Grid>
+    <Grid/>
 </Window>

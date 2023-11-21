@@ -21,11 +21,25 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Employees}" Grid.Column="1" Grid.Row="1" PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick">
+        <TextBox
+            Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="1"
+            Grid.Row="1"
+            TextWrapping="Wrap"
+            />
+
+        <ListView
+            ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="1"
+            Grid.Row="3"
+            PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick"
+            >
             <ListView.View>
                 <GridView>
                     <GridViewColumn
