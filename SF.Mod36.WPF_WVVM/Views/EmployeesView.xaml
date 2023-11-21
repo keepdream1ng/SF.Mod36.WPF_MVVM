@@ -25,7 +25,7 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Employees}" Grid.Column="1" Grid.Row="1">
+        <ListView ItemsSource="{Binding Employees}" Grid.Column="1" Grid.Row="1" PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

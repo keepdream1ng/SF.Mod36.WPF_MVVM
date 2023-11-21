@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SF.Mod36.WPF_WVVM.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,17 @@ namespace SF.Mod36.WPF_WVVM.Views
 		{
 			InitializeComponent();
 		}
-	}
+
+		private void ListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			var item = (sender as ListView).SelectedItem;
+			if (item is null )
+			{
+				return;
+			}
+
+			var empl = item as Employee;
+			MessageBox.Show($"Selected employee {empl.FirstName} {empl.LastName} {empl.JobTitle}");
+        }
+    }
 }
