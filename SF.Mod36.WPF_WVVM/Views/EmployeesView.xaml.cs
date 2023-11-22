@@ -1,18 +1,10 @@
-﻿using SF.Mod36.WPF_WVVM.Models;
+﻿using SF.Mod36.WPF_MVVM.ViewModels;
+using SF.Mod36.WPF_WVVM.Models;
 using SF.Mod36.WPF_WVVM.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SF.Mod36.WPF_MVVM.Views;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SF.Mod36.WPF_WVVM.Views
 {
@@ -21,10 +13,13 @@ namespace SF.Mod36.WPF_WVVM.Views
 	/// </summary>
 	public partial class EmployessView : Window
 	{
-		public EmployessView(IEmployeesViewModel model)
+		private readonly IEmployeeInfoViewModel _infoModel;
+
+		public EmployessView(IEmployeesViewModel model, IEmployeeInfoViewModel infoModel)
 		{
 			InitializeComponent();
 			DataContext = model;
+			_infoModel = infoModel;
 		}
 
 		private void ListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -35,8 +30,9 @@ namespace SF.Mod36.WPF_WVVM.Views
 				return;
 			}
 
-			var empl = item as Employee;
-			MessageBox.Show($"Selected employee {empl.FirstName} {empl.LastName} {empl.JobTitle}");
+			_infoModel.Employee = item as Employee;
+			var infoView = new EmployeeInfoView(_infoModel);
+			infoView.Show();
         }
     }
 }

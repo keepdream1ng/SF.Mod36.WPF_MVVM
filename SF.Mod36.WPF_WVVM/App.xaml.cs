@@ -1,5 +1,6 @@
 ﻿using SF.Mod36.WPF_WVVM.DataAcces;
 using SF.Mod36.WPF_WVVM.ViewModels;
+using SF.Mod36.WPF_MVVM.ViewModels;
 using SF.Mod36.WPF_WVVM.Views;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ public partial class App : Application
 		UnityContainer unityContainer = new();
 		unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
 		unityContainer.RegisterType<IEmployeesViewModel, EmployeesViewModel>();
+		unityContainer.RegisterType<IEmployeeInfoViewModel, EmployeeInfoViewModel>();
 
 		var startView = unityContainer.Resolve<EmployessView>();
 		startView.Show();
