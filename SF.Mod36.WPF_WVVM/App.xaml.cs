@@ -25,11 +25,7 @@ public partial class App : Application
 		unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
 		unityContainer.RegisterType<IEmployeesViewModel, EmployeesViewModel>();
 
-		var startView = new EmployessView
-		{
-			DataContext = unityContainer.Resolve<IEmployeesViewModel>()
-		};
-
+		var startView = unityContainer.Resolve<EmployessView>();
 		startView.Show();
 	}
 }

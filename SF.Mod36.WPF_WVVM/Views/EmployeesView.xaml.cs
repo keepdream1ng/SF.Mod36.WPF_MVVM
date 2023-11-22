@@ -1,4 +1,5 @@
 ﻿using SF.Mod36.WPF_WVVM.Models;
+using SF.Mod36.WPF_WVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,10 @@ namespace SF.Mod36.WPF_WVVM.Views
 	/// </summary>
 	public partial class EmployessView : Window
 	{
-		public EmployessView()
+		public EmployessView(IEmployeesViewModel model)
 		{
 			InitializeComponent();
+			DataContext = model;
 		}
 
 		private void ListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
