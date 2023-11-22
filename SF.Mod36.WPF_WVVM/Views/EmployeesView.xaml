@@ -8,11 +8,6 @@
         mc:Ignorable="d"
         Title="EmployessView" Height="300" Width="600">
 
-    <Window.DataContext>
-        <vm:EmployeesViewModel/>
-    </Window.DataContext>
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />

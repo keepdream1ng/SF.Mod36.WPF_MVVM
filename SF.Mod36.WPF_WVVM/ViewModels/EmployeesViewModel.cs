@@ -11,14 +11,15 @@ using System.Threading.Tasks;
 
 namespace SF.Mod36.WPF_WVVM.ViewModels;
 
-public class EmployeesViewModel : INotifyPropertyChanged
+public class EmployeesViewModel : INotifyPropertyChanged, IEmployeesViewModel
 {
-	private readonly EmployeeRepository _repository;
+	private readonly IEmployeeRepository _repository;
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	private string _filter;
-	public string Filter {
+	public string Filter
+	{
 		get { return _filter; }
 		set
 		{
@@ -31,13 +32,13 @@ public class EmployeesViewModel : INotifyPropertyChanged
 	}
 	public ObservableCollection<Employee> Employees { get; set; }
 
-	public EmployeesViewModel()
+	public EmployeesViewModel(IEmployeeRepository repository)
 	{
-		_repository = new EmployeeRepository();
+		_repository = repository;
 		FillListView();
 	}
 
-	private void OnPropertyChanged([CallerMemberName]string propertyName = null)
+	private void OnPropertyChanged([CallerMemberName] string propertyName = null)
 	{
 		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 	}
@@ -48,7 +49,7 @@ public class EmployeesViewModel : INotifyPropertyChanged
 		{
 			Employees = new ObservableCollection<Employee>(
 			  _repository.GetAll()
-				.Where(v => 
+				.Where(v =>
 						(v.FirstName + v.LastName)
 						.ToLower()
 						.Contains(Filter.ToLower())
